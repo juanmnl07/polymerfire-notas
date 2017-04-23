@@ -1,0 +1,22 @@
+{
+  "name": "PolymerFire-document",
+  "authors": [
+    "Juan Manuel <juanmnl07@gmail.com>"
+  ],
+  "description": "Using document example based on polymer document",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymerfire": "^0.11.1",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
+  }
+}

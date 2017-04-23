@@ -1,0 +1,68 @@
+<!-- 1. Load webcomponents-lite.min.js for polyfill support. -->
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+
+<!-- 2. Use an HTML Import to bring in some elements. -->
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
+<dom-module id="pruebas-firebase-document">
+	<template>
+		<style>
+			
+		</style>
+		<h1>
+			Nota
+		</h1>
+		<!-- App Configuration -->
+		<firebase-app
+			name="proyect1" 
+			auth-domain="proyect1-9b201.firebaseapp.com" 
+			database-url="https://proyect1-9b201.firebaseio.com/" 
+			api-key="AIzaSyBWP94tOoL4uNtKLVzx21vHo4IJnnpEXzQ">
+		</firebase-app>
+		<!-- Document -->
+		<firebase-document
+			app-name="proyect1" 
+			path="/metadata" 
+			data="{{metadatos}}">
+		</firebase-document>
+		<!-- Elementos que se cambiaran dinámicamente por medio de biding -->
+		<p>
+			Autor: [[metadatos.Autor]]
+		</p>
+		<p>		
+			Nota: [[metadatos.TituloNota]]
+		</p>
+		<p>			
+			Contenido: [[metadatos.Contenido]]
+		</p>
+		<!-- Inputs para cambiar el contenido -->
+		<paper-input label="Autor" name="autor" id="cambiar-autor"></paper-input>
+		<paper-input label="Título" name="tituloNota" id="cambiar-titulo"></paper-input>
+		<paper-input label="Contenido" name="ContenidoNota" id="cambiar-contenido"></paper-input>
+		<paper-button raised class="green" toggles on-tap="cambiarNota">Cambiar Nota</paper-button>
+	</template>
+	<script>
+		Polymer({
+			is: "pruebas-firebase-document",
+			properties: {
+				metadatos: Object
+			},
+			cambiarNota: function(){
+
+				/*Obtener los valores de los input*/
+				$autor = document.querySelector('#cambiar-autor').value;
+				$titulo = document.querySelector('#cambiar-titulo').value;
+				$contenido = document.querySelector('#cambiar-contenido').value;
+
+				/*Asignar los valores a la base de dos por medio del helper set de polymer*/
+				this.set('metadatos.Autor', $autor);
+				this.set('metadatos.TituloNota', $titulo);
+				this.set('metadatos.Contenido', $contenido);
+			}
+		});
+	</script>
+</dom-module>
